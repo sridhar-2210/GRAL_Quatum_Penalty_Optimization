@@ -1,0 +1,411 @@
+
+===== tests/test_core.py  (08:23:15) =====
+PASS test_held_karp_matches_brute_force
+PASS test_burma14_optimum_is_3323
+PASS test_feasible_tours_energy_equals_length
+PASS test_energy_matches_definition_on_random_states
+PASS test_qubo_ground_state_is_optimal_tour
+PASS test_numba_kernel_logic_matches_numpy_backend_quality
+PASS test_sa_solves_small_instance
+PASS test_alm_runs
+
+===== tests/test_tsplib.py  (08:23:19) =====
+PASS test_burma14_file_matches_builtin
+PASS test_exact_optimum_equals_published
+PASS test_all_benchmark_instances_valid
+
+===== scripts/evaluate.py --tsplib --seeds 10 --tune-sizes 14 21 29 --rounds 10 --reads 32 --models models/final/gral.pt=GRAL models/final/scalar.pt=scalar-PPO models/v1/gral_best.pt=GRAL-noresidual models/v1/scalar_best.pt=scalar-PPO-noresidual --sweeps 200 --tag tsplib_b200  (08:23:24) =====
+[tsplib_b200] solver=sa split=test sizes=[10, 12, 14, 16] budget=Budget(rounds=10, reads=32, sweeps=200)
+grid-tuned lambda = 0.5 (24s, 30 episodes)
+evaluation: 810 episodes in 998s
+    group                    method  runs  feasible_rate  mean_gap  std_gap  median_gap  optimal_hits  valid_sample_pct  optimal_sample_pct  mean_first_feas  mean_secs
+  burma14                      GRAL    10            1.0     9.606    3.772       9.509           0.0            84.594                 0.0              1.0      1.960
+  burma14 fixed-grid-tuned(lam=0.5)    10            1.0    10.364    3.155      10.984           0.0            35.688                 0.0              1.0      1.790
+  burma14       per-constraint-rule    10            1.0    10.816    2.718      10.172           0.0            70.719                 0.0              1.0      1.649
+  burma14           ALM-dual-ascent    10            1.0    11.457    5.097      13.166           0.0            87.906                 0.0              1.0      1.726
+  burma14     scalar-PPO-noresidual    10            1.0    11.944    3.584      12.564           0.0            58.875                 0.0              1.0      1.938
+  burma14                scalar-PPO    10            1.0    12.305    2.868      12.113           0.0            44.688                 0.0              1.0      2.010
+  burma14           scalar-adaptive    10            1.0    12.317    5.205      11.481           0.0            65.812                 0.0              1.0      1.970
+  burma14           GRAL-noresidual    10            1.0    14.779    4.166      14.354           0.0            97.938                 0.0              1.0      1.760
+  burma14              fixed(lam=1)    10            1.0    23.707    4.302      23.864           0.0           100.000                 0.0              1.0      1.850
+ulysses16                      GRAL    10            1.0    14.037    3.321      14.003           0.0            78.406                 0.0              1.0      2.272
+ulysses16       per-constraint-rule    10            1.0    17.325    5.349      18.691           0.0            70.281                 0.0              1.0      1.908
+ulysses16     scalar-PPO-noresidual    10            1.0    17.638    2.863      17.670           0.0            57.656                 0.0              1.0      2.318
+ulysses16                scalar-PPO    10            1.0    17.787    4.172      18.990           0.0            47.656                 0.0              1.0      1.990
+ulysses16           ALM-dual-ascent    10            1.0    18.522    5.225      19.522           0.0            80.406                 0.0              2.0      2.186
+ulysses16           scalar-adaptive    10            1.0    19.262    3.849      19.026           0.0            68.062                 0.0              1.0      2.000
+ulysses16           GRAL-noresidual    10            1.0    19.730    5.253      20.258           0.0            92.938                 0.0              1.0      2.396
+ulysses16              fixed(lam=1)    10            1.0    23.005    5.290      23.458           0.0           100.000                 0.0              1.0      2.286
+ulysses16 fixed-grid-tuned(lam=0.5)    10            0.0       NaN      NaN         NaN           0.0             0.000                 0.0              NaN      2.222
+     gr17 fixed-grid-tuned(lam=0.5)    10            1.0    16.149    2.463      15.803           0.0            23.875                 0.0              1.0      2.363
+     gr17     scalar-PPO-noresidual    10            1.0    16.168    5.250      17.626           0.0            53.156                 0.0              1.0      2.865
+     gr17                scalar-PPO    10            1.0    17.487    4.918      16.067           0.0            49.531                 0.0              1.0      2.649
+     gr17       per-constraint-rule    10            1.0    17.635    4.600      16.954           0.0            67.312                 0.0              1.0      1.942
+     gr17           scalar-adaptive    10            1.0    17.871    2.848      17.650           0.0            66.844                 0.0              1.0      1.966
+     gr17           GRAL-noresidual    10            1.0    18.221    4.014      17.770           0.0            88.594                 0.0              1.0      3.016
+     gr17                      GRAL    10            1.0    18.384    2.943      17.410           0.0            79.875                 0.0              1.0      2.831
+     gr17           ALM-dual-ascent    10            1.0    19.717    4.074      19.113           0.0            84.219                 0.0              1.0      1.916
+     gr17              fixed(lam=1)    10            1.0    28.686    7.226      26.930           0.0           100.000                 0.0              1.0      2.471
+     gr21 fixed-grid-tuned(lam=0.5)    10            1.0    30.975    7.315      29.165           0.0            24.750                 0.0              1.0      3.996
+     gr21                      GRAL    10            1.0    34.233    5.701      33.820           0.0            81.000                 0.0              1.0      5.730
+     gr21       per-constraint-rule    10            1.0    34.566    4.882      34.152           0.0            65.875                 0.0              1.0      4.004
+     gr21     scalar-PPO-noresidual    10            1.0    34.939    4.604      36.018           0.0            50.437                 0.0              1.0      4.129
+     gr21                scalar-PPO    10            1.0    36.206    5.983      37.551           0.0            50.219                 0.0              1.0      4.839
+     gr21           scalar-adaptive    10            1.0    38.256    7.968      40.672           0.0            66.406                 0.0              1.0      4.107
+     gr21           ALM-dual-ascent    10            1.0    39.272    6.028      38.992           0.0            85.219                 0.0              1.0      3.958
+     gr21           GRAL-noresidual    10            1.0    40.949    4.203      40.488           0.0            86.438                 0.0              1.0      6.154
+     gr21              fixed(lam=1)    10            1.0    61.489   11.028      63.982           0.0           100.000                 0.0              1.0      4.619
+ulysses22                      GRAL    10            1.0    32.594    5.315      32.732           0.0            68.969                 0.0              1.0      9.947
+ulysses22           GRAL-noresidual    10            1.0    33.944    2.918      33.117           0.0            92.281                 0.0              1.0      6.084
+ulysses22       per-constraint-rule    10            1.0    37.640    3.319      37.110           0.0            70.500                 0.0              1.0      5.022
+ulysses22     scalar-PPO-noresidual    10            1.0    37.911    5.483      38.386           0.0            53.500                 0.0              1.0      5.779
+ulysses22           scalar-adaptive    10            1.0    38.369    5.155      39.969           0.0            68.094                 0.0              1.0      5.206
+ulysses22                scalar-PPO    10            1.0    39.722    5.646      40.746           0.0            41.500                 0.0              1.0     12.869
+ulysses22           ALM-dual-ascent    10            1.0    44.289    5.999      44.268           0.0            79.656                 0.0              2.0      8.146
+ulysses22              fixed(lam=1)    10            1.0    48.938    9.551      52.460           0.0           100.000                 0.0              1.0      6.224
+ulysses22 fixed-grid-tuned(lam=0.5)    10            0.0       NaN      NaN         NaN           0.0             0.000                 0.0              NaN      9.195
+     gr24                      GRAL    10            1.0    31.824    5.597      33.648           0.0            86.219                 0.0              1.0     22.684
+     gr24     scalar-PPO-noresidual    10            1.0    36.171    4.085      37.225           0.0            54.031                 0.0              1.0     14.736
+     gr24                scalar-PPO    10            1.0    36.486    4.307      37.579           0.0            55.156                 0.0              1.0     22.984
+     gr24           scalar-adaptive    10            1.0    36.509    6.542      37.303           0.0            71.219                 0.0              1.0     10.667
+     gr24       per-constraint-rule    10            1.0    37.877    5.388      39.230           0.0            78.938                 0.0              1.0      9.736
+     gr24 fixed-grid-tuned(lam=0.5)    10            1.0    40.708    3.606      41.706           0.0            69.719                 0.0              1.0     19.403
+     gr24           ALM-dual-ascent    10            1.0    46.140    7.712      46.108           0.0            92.938                 0.0              1.0     18.708
+     gr24           GRAL-noresidual    10            1.0    47.704    5.186      48.310           0.0            93.594                 0.0              1.0     11.992
+     gr24              fixed(lam=1)    10            1.0    64.575    6.891      64.190           0.0           100.000                 0.0              1.0     14.200
+    fri26                scalar-PPO    10            1.0    42.914    4.762      41.302           0.0            46.938                 0.0              1.0     36.046
+    fri26     scalar-PPO-noresidual    10            1.0    43.682    4.249      43.490           0.0            54.812                 0.0              1.0     34.791
+    fri26                      GRAL    10            1.0    44.077    5.632      44.931           0.0            77.719                 0.0              1.0     34.915
+    fri26       per-constraint-rule    10            1.0    47.417    6.341      49.413           0.0            74.969                 0.0              1.0     26.063
+    fri26 fixed-grid-tuned(lam=0.5)    10            1.0    47.481    4.374      48.346           0.0            49.781                 0.0              1.0     33.537
+    fri26           scalar-adaptive    10            1.0    47.908    5.590      47.439           0.0            64.094                 0.0              1.0     29.004
+    fri26           ALM-dual-ascent    10            1.0    50.939    7.851      48.453           0.0            90.469                 0.0              1.0     32.170
+    fri26           GRAL-noresidual    10            1.0    54.813    5.533      55.496           0.0            86.719                 0.0              1.0     35.656
+    fri26              fixed(lam=1)    10            1.0    71.836    5.217      71.612           0.0           100.000                 0.0              1.0     25.183
+   bayg29                      GRAL    10            1.0    40.677    3.623      41.429           0.0            79.031                 0.0              1.0     49.025
+   bayg29           scalar-adaptive    10            1.0    42.435    4.754      42.516           0.0            63.875                 0.0              1.0     54.922
+   bayg29                scalar-PPO    10            1.0    43.528    5.624      43.944           0.0            42.781                 0.0              1.0     52.101
+   bayg29 fixed-grid-tuned(lam=0.5)    10            1.0    45.217    5.241      44.907           0.0            42.375                 0.0              1.0     52.642
+   bayg29       per-constraint-rule    10            1.0    45.292    3.982      44.317           0.0            66.813                 0.0              1.0     34.623
+   bayg29     scalar-PPO-noresidual    10            1.0    46.050    5.363      46.770           0.0            43.937                 0.0              1.0     48.032
+   bayg29           ALM-dual-ascent    10            1.0    52.435    4.788      53.758           0.0            87.875                 0.0              1.0     41.881
+   bayg29           GRAL-noresidual    10            1.0    56.298    4.151      58.075           0.0            82.438                 0.0              1.0     50.535
+   bayg29              fixed(lam=1)    10            1.0    75.677    8.805      76.118           0.0           100.000                 0.0              1.0     51.835
+   bays29                      GRAL    10            1.0    41.020    5.784      42.649           0.0            77.406                 0.0              1.0     33.402
+   bays29     scalar-PPO-noresidual    10            1.0    45.500    4.633      46.163           0.0            41.188                 0.0              1.0     31.026
+   bays29       per-constraint-rule    10            1.0    46.624    4.458      45.099           0.0            66.687                 0.0              1.0     44.927
+   bays29                scalar-PPO    10            1.0    47.139    6.929      44.975           0.0            43.500                 0.0              1.0     45.651
+   bays29 fixed-grid-tuned(lam=0.5)    10            1.0    49.936    3.325      48.738           0.0            40.531                 0.0              1.0     47.138
+   bays29           ALM-dual-ascent    10            1.0    52.248    3.566      52.030           0.0            87.219                 0.0              1.0     36.158
+   bays29           scalar-adaptive    10            1.0    53.406    4.655      54.653           0.0            65.188                 0.0              1.0     48.571
+   bays29           GRAL-noresidual    10            1.0    53.624    3.855      54.703           0.0            78.781                 0.0              1.0     36.808
+   bays29              fixed(lam=1)    10            1.0    82.069    3.278      82.426           0.0           100.000                 0.0              1.0     42.792
+
+Paired comparison on gap_pct (win = learned model better):
+ metric                 model                        vs group  pairs  win  tie  loss  mean_diff   wilcoxon_p
+gap_pct                  GRAL              fixed(lam=1)   ALL     90   89    0     1   -23.7256 2.358513e-16
+gap_pct                  GRAL fixed-grid-tuned(lam=0.5)   ALL     90   66    0    24   -19.3754 7.215588e-08
+gap_pct                  GRAL           scalar-adaptive   ALL     90   64    0    26    -4.4314 2.269219e-06
+gap_pct                  GRAL       per-constraint-rule   ALL     90   60    0    30    -3.1934 8.525300e-05
+gap_pct                  GRAL           ALM-dual-ascent   ALL     90   76    0    14    -7.6185 1.622601e-12
+gap_pct                  GRAL                scalar-PPO   ALL     90   60    1    29    -3.0135 6.792099e-04
+gap_pct                  GRAL           GRAL-noresidual   ALL     90   71    0    19    -8.1791 1.362793e-11
+gap_pct                  GRAL     scalar-PPO-noresidual   ALL     90   61    0    29    -2.6169 3.448128e-04
+gap_pct            scalar-PPO              fixed(lam=1)   ALL     90   82    2     6   -20.7121 3.256326e-15
+gap_pct            scalar-PPO fixed-grid-tuned(lam=0.5)   ALL     90   59    1    30   -16.3619 6.191238e-05
+gap_pct            scalar-PPO           scalar-adaptive   ALL     90   52    1    37    -1.4178 1.249695e-01
+gap_pct            scalar-PPO       per-constraint-rule   ALL     90   44    2    44    -0.1799 8.776479e-01
+gap_pct            scalar-PPO           ALM-dual-ascent   ALL     90   60    2    28    -4.6050 2.632286e-06
+gap_pct            scalar-PPO                      GRAL   ALL     90   29    1    60     3.0135 6.792099e-04
+gap_pct            scalar-PPO           GRAL-noresidual   ALL     90   66    0    24    -5.1655 8.012847e-07
+gap_pct            scalar-PPO     scalar-PPO-noresidual   ALL     90   40    2    48     0.3966 6.175662e-01
+gap_pct       GRAL-noresidual              fixed(lam=1)   ALL     90   81    0     9   -15.5466 5.114526e-15
+gap_pct       GRAL-noresidual fixed-grid-tuned(lam=0.5)   ALL     90   35    0    55   -11.1964 4.530026e-01
+gap_pct       GRAL-noresidual           scalar-adaptive   ALL     90   32    1    57     3.7477 1.574768e-03
+gap_pct       GRAL-noresidual       per-constraint-rule   ALL     90   27    0    63     4.9856 9.065140e-07
+gap_pct       GRAL-noresidual           ALM-dual-ascent   ALL     90   41    0    49     0.5605 4.374100e-01
+gap_pct       GRAL-noresidual                      GRAL   ALL     90   19    0    71     8.1791 1.362793e-11
+gap_pct       GRAL-noresidual                scalar-PPO   ALL     90   24    0    66     5.1655 8.012847e-07
+gap_pct       GRAL-noresidual     scalar-PPO-noresidual   ALL     90   23    0    67     5.5622 4.811500e-08
+gap_pct scalar-PPO-noresidual              fixed(lam=1)   ALL     90   85    1     4   -21.1088 9.488861e-16
+gap_pct scalar-PPO-noresidual fixed-grid-tuned(lam=0.5)   ALL     90   58    1    31   -16.7585 7.418572e-05
+gap_pct scalar-PPO-noresidual           scalar-adaptive   ALL     90   58    1    31    -1.8145 1.362256e-02
+gap_pct scalar-PPO-noresidual       per-constraint-rule   ALL     90   46    1    43    -0.5765 5.114017e-01
+gap_pct scalar-PPO-noresidual           ALM-dual-ascent   ALL     90   65    0    25    -5.0017 8.820037e-08
+gap_pct scalar-PPO-noresidual                      GRAL   ALL     90   29    0    61     2.6169 3.448128e-04
+gap_pct scalar-PPO-noresidual                scalar-PPO   ALL     90   48    2    40    -0.3966 6.175662e-01
+gap_pct scalar-PPO-noresidual           GRAL-noresidual   ALL     90   67    0    23    -5.5622 4.811500e-08
+
+GRAL per group (gap_pct):
+ metric model                        vs     group  pairs  win  tie  loss  mean_diff  wilcoxon_p
+gap_pct  GRAL              fixed(lam=1)   burma14     10   10    0     0   -14.1017    0.001953
+gap_pct  GRAL              fixed(lam=1) ulysses16     10   10    0     0    -8.9678    0.001953
+gap_pct  GRAL              fixed(lam=1)      gr17     10   10    0     0   -10.3022    0.001953
+gap_pct  GRAL              fixed(lam=1)      gr21     10   10    0     0   -27.2553    0.001953
+gap_pct  GRAL              fixed(lam=1) ulysses22     10    9    0     1   -16.3439    0.003906
+gap_pct  GRAL              fixed(lam=1)      gr24     10   10    0     0   -32.7516    0.001953
+gap_pct  GRAL              fixed(lam=1)     fri26     10   10    0     0   -27.7588    0.001953
+gap_pct  GRAL              fixed(lam=1)    bayg29     10   10    0     0   -35.0000    0.001953
+gap_pct  GRAL              fixed(lam=1)    bays29     10   10    0     0   -41.0495    0.001953
+gap_pct  GRAL fixed-grid-tuned(lam=0.5)   burma14     10    7    0     3    -0.7584    0.431641
+gap_pct  GRAL fixed-grid-tuned(lam=0.5) ulysses16     10   10    0     0   -85.9630    0.001953
+gap_pct  GRAL fixed-grid-tuned(lam=0.5)      gr17     10    3    0     7     2.2350    0.130859
+gap_pct  GRAL fixed-grid-tuned(lam=0.5)      gr21     10    2    0     8     3.2582    0.058594
+gap_pct  GRAL fixed-grid-tuned(lam=0.5) ulysses22     10   10    0     0   -67.4062    0.001953
+gap_pct  GRAL fixed-grid-tuned(lam=0.5)      gr24     10   10    0     0    -8.8836    0.001953
+gap_pct  GRAL fixed-grid-tuned(lam=0.5)     fri26     10    7    0     3    -3.4045    0.275391
+gap_pct  GRAL fixed-grid-tuned(lam=0.5)    bayg29     10    8    0     2    -4.5404    0.009766
+gap_pct  GRAL fixed-grid-tuned(lam=0.5)    bays29     10    9    0     1    -8.9158    0.005859
+gap_pct  GRAL           scalar-adaptive   burma14     10    8    0     2    -2.7114    0.160156
+gap_pct  GRAL           scalar-adaptive ulysses16     10    9    0     1    -5.2253    0.037109
+gap_pct  GRAL           scalar-adaptive      gr17     10    3    0     7     0.5132    0.556641
+gap_pct  GRAL           scalar-adaptive      gr21     10    6    0     4    -4.0229    0.322266
+gap_pct  GRAL           scalar-adaptive ulysses22     10    8    0     2    -5.7750    0.064453
+gap_pct  GRAL           scalar-adaptive      gr24     10    7    0     3    -4.6855    0.160156
+gap_pct  GRAL           scalar-adaptive     fri26     10    7    0     3    -3.8314    0.111328
+gap_pct  GRAL           scalar-adaptive    bayg29     10    6    0     4    -1.7578    0.375000
+gap_pct  GRAL           scalar-adaptive    bays29     10   10    0     0   -12.3861    0.001953
+gap_pct  GRAL       per-constraint-rule   burma14     10    6    0     4    -1.2098    0.492188
+gap_pct  GRAL       per-constraint-rule ulysses16     10    7    0     3    -3.2877    0.083984
+gap_pct  GRAL       per-constraint-rule      gr17     10    4    0     6     0.7482    0.769531
+gap_pct  GRAL       per-constraint-rule      gr21     10    5    0     5    -0.3325    0.921875
+gap_pct  GRAL       per-constraint-rule ulysses22     10    8    0     2    -5.0463    0.064453
+gap_pct  GRAL       per-constraint-rule      gr24     10    8    0     2    -6.0535    0.048828
+gap_pct  GRAL       per-constraint-rule     fri26     10    7    0     3    -3.3404    0.556641
+gap_pct  GRAL       per-constraint-rule    bayg29     10    8    0     2    -4.6149    0.037109
+gap_pct  GRAL       per-constraint-rule    bays29     10    7    0     3    -5.6040    0.064453
+gap_pct  GRAL           ALM-dual-ascent   burma14     10    9    0     1    -1.8507    0.083984
+gap_pct  GRAL           ALM-dual-ascent ulysses16     10    7    0     3    -4.4846    0.064453
+gap_pct  GRAL           ALM-dual-ascent      gr17     10    6    0     4    -1.3333    0.431641
+gap_pct  GRAL           ALM-dual-ascent      gr21     10    7    0     3    -5.0388    0.037109
+gap_pct  GRAL           ALM-dual-ascent ulysses22     10   10    0     0   -11.6954    0.001953
+gap_pct  GRAL           ALM-dual-ascent      gr24     10   10    0     0   -14.3160    0.001953
+gap_pct  GRAL           ALM-dual-ascent     fri26     10    7    0     3    -6.8623    0.037109
+gap_pct  GRAL           ALM-dual-ascent    bayg29     10   10    0     0   -11.7578    0.001953
+gap_pct  GRAL           ALM-dual-ascent    bays29     10   10    0     0   -11.2277    0.001953
+gap_pct  GRAL                scalar-PPO   burma14     10    8    1     1    -2.6994    0.074219
+gap_pct  GRAL                scalar-PPO ulysses16     10    8    0     2    -3.7498    0.048828
+gap_pct  GRAL                scalar-PPO      gr17     10    4    0     6     0.8969    0.556641
+gap_pct  GRAL                scalar-PPO      gr21     10    6    0     4    -1.9727    0.556641
+gap_pct  GRAL                scalar-PPO ulysses22     10    8    0     2    -7.1282    0.064453
+gap_pct  GRAL                scalar-PPO      gr24     10    8    0     2    -4.6619    0.048828
+gap_pct  GRAL                scalar-PPO     fri26     10    4    0     6     1.1633    0.625000
+gap_pct  GRAL                scalar-PPO    bayg29     10    8    0     2    -2.8509    0.105469
+gap_pct  GRAL                scalar-PPO    bays29     10    6    0     4    -6.1188    0.193359
+gap_pct  GRAL           GRAL-noresidual   burma14     10    8    0     2    -5.1730    0.027344
+gap_pct  GRAL           GRAL-noresidual ulysses16     10    8    0     2    -5.6932    0.037109
+gap_pct  GRAL           GRAL-noresidual      gr17     10    4    0     6     0.1631    0.921875
+gap_pct  GRAL           GRAL-noresidual      gr21     10    8    0     2    -6.7159    0.048828
+gap_pct  GRAL           GRAL-noresidual ulysses22     10    4    0     6    -1.3503    0.921875
+gap_pct  GRAL           GRAL-noresidual      gr24     10   10    0     0   -15.8805    0.001953
+gap_pct  GRAL           GRAL-noresidual     fri26     10    9    0     1   -10.7364    0.005859
+gap_pct  GRAL           GRAL-noresidual    bayg29     10   10    0     0   -15.6211    0.001953
+gap_pct  GRAL           GRAL-noresidual    bays29     10   10    0     0   -12.6040    0.001953
+gap_pct  GRAL     scalar-PPO-noresidual   burma14     10    7    0     3    -2.3382    0.232422
+gap_pct  GRAL     scalar-PPO-noresidual ulysses16     10    8    0     2    -3.6011    0.037109
+gap_pct  GRAL     scalar-PPO-noresidual      gr17     10    5    0     5     2.2158    0.695312
+gap_pct  GRAL     scalar-PPO-noresidual      gr21     10    6    0     4    -0.7056    1.000000
+gap_pct  GRAL     scalar-PPO-noresidual ulysses22     10    7    0     3    -5.3173    0.105469
+gap_pct  GRAL     scalar-PPO-noresidual      gr24     10    9    0     1    -4.3475    0.037109
+gap_pct  GRAL     scalar-PPO-noresidual     fri26     10    5    0     5     0.3949    0.824219
+gap_pct  GRAL     scalar-PPO-noresidual    bayg29     10    7    0     3    -5.3727    0.027344
+gap_pct  GRAL     scalar-PPO-noresidual    bays29     10    7    0     3    -4.4802    0.105469
+
+===== scripts/evaluate.py --tsplib --seeds 10 --tune-sizes 14 21 29 --rounds 10 --reads 32 --models models/final/gral.pt=GRAL models/final/scalar.pt=scalar-PPO models/v1/gral_best.pt=GRAL-noresidual models/v1/scalar_best.pt=scalar-PPO-noresidual --sweeps 1000 --tag tsplib_b1000  (08:40:35) =====
+[tsplib_b1000] solver=sa split=test sizes=[10, 12, 14, 16] budget=Budget(rounds=10, reads=32, sweeps=1000)
+grid-tuned lambda = 0.5 (210s, 30 episodes)
+evaluation: 810 episodes in 7702s
+    group                    method  runs  feasible_rate  mean_gap  std_gap  median_gap  optimal_hits  valid_sample_pct  optimal_sample_pct  mean_first_feas  mean_secs
+  burma14                      GRAL    10            1.0     6.031    2.271       6.636           0.0            91.094               0.000              1.0     15.834
+  burma14           scalar-adaptive    10            1.0     6.554    4.253       6.259           0.0            66.156               0.000              1.0     22.026
+  burma14       per-constraint-rule    10            1.0     6.858    2.560       7.358           0.0            74.781               0.000              1.0     22.773
+  burma14                scalar-PPO    10            1.0     7.156    3.836       7.388           0.1            47.000               0.031              1.0     15.860
+  burma14 fixed-grid-tuned(lam=0.5)    10            1.0     7.514    2.611       8.832           0.0            36.219               0.000              1.0     21.949
+  burma14     scalar-PPO-noresidual    10            1.0     7.701    3.263       8.622           0.0            63.031               0.000              1.0     14.904
+  burma14           ALM-dual-ascent    10            1.0     9.419    3.920       9.570           0.0            88.844               0.000              1.0     22.392
+  burma14           GRAL-noresidual    10            1.0    10.918    2.947      11.782           0.0            99.656               0.000              1.0     15.667
+  burma14              fixed(lam=1)    10            1.0    17.081    3.741      17.785           0.0           100.000               0.000              1.0     21.799
+ulysses16       per-constraint-rule    10            1.0     8.350    2.313       7.953           0.0            72.469               0.000              1.0     27.925
+ulysses16                      GRAL    10            1.0     8.710    1.975       8.872           0.0            84.844               0.000              1.0     20.784
+ulysses16           scalar-adaptive    10            1.0    10.325    2.784       9.229           0.0            70.469               0.000              1.0     27.031
+ulysses16     scalar-PPO-noresidual    10            1.0    10.860    2.442      10.300           0.0            58.750               0.000              1.0     19.298
+ulysses16                scalar-PPO    10            1.0    11.741    3.702      12.677           0.0            52.531               0.000              1.0     19.948
+ulysses16           GRAL-noresidual    10            1.0    15.699    2.631      15.797           0.0            96.937               0.000              1.0     19.374
+ulysses16           ALM-dual-ascent    10            1.0    16.257    3.443      16.329           0.0            79.969               0.000              2.3     27.474
+ulysses16              fixed(lam=1)    10            1.0    20.792    3.158      21.045           0.0           100.000               0.000              1.0     25.402
+ulysses16 fixed-grid-tuned(lam=0.5)    10            0.0       NaN      NaN         NaN           0.0             0.000               0.000              NaN     27.747
+     gr17                      GRAL    10            1.0     9.703    2.572       9.424           0.0            88.094               0.000              1.0     34.826
+     gr17 fixed-grid-tuned(lam=0.5)    10            1.0    10.101    4.103      10.456           0.0            29.938               0.000              1.0     28.888
+     gr17       per-constraint-rule    10            1.0    10.710    2.227      10.288           0.0            72.906               0.000              1.0     31.817
+     gr17           scalar-adaptive    10            1.0    11.381    2.692      11.894           0.0            68.406               0.000              1.0     27.186
+     gr17     scalar-PPO-noresidual    10            1.0    11.904    2.555      11.871           0.0            58.156               0.000              1.0     34.933
+     gr17                scalar-PPO    10            1.0    12.734    1.379      12.590           0.0            45.781               0.000              1.0     37.277
+     gr17           ALM-dual-ascent    10            1.0    13.194    3.388      14.341           0.0            85.563               0.000              1.0     29.817
+     gr17           GRAL-noresidual    10            1.0    14.839    2.208      14.125           0.0            94.562               0.000              1.0     44.236
+     gr17              fixed(lam=1)    10            1.0    21.137    6.779      21.679           0.0           100.000               0.000              1.0     27.381
+     gr21                      GRAL    10            1.0    20.273    3.861      20.096           0.0            91.594               0.000              1.0    103.107
+     gr21       per-constraint-rule    10            1.0    21.799    5.293      20.429           0.0            72.844               0.000              1.0    109.368
+     gr21                scalar-PPO    10            1.0    22.723    4.909      21.500           0.0            47.781               0.000              1.0    106.878
+     gr21 fixed-grid-tuned(lam=0.5)    10            1.0    23.635    4.813      24.270           0.0            35.281               0.000              1.0     91.556
+     gr21     scalar-PPO-noresidual    10            1.0    24.363    4.183      24.880           0.0            59.031               0.000              1.0    118.496
+     gr21           ALM-dual-ascent    10            1.0    25.035    5.965      25.711           0.0            87.656               0.000              1.0     81.086
+     gr21           scalar-adaptive    10            1.0    27.381    3.736      27.872           0.0            70.281               0.000              1.0    110.044
+     gr21           GRAL-noresidual    10            1.0    28.352    2.352      28.038           0.0            94.625               0.000              1.0    117.012
+     gr21              fixed(lam=1)    10            1.0    52.268    7.800      51.625           0.0           100.000               0.000              1.0     88.705
+ulysses22     scalar-PPO-noresidual    10            1.0    25.782    5.801      25.709           0.0            57.125               0.000              1.0    137.414
+ulysses22       per-constraint-rule    10            1.0    26.284    5.941      27.627           0.0            71.688               0.000              1.0    118.874
+ulysses22           GRAL-noresidual    10            1.0    27.269    4.161      26.608           0.0            96.344               0.000              1.0    148.898
+ulysses22           scalar-adaptive    10            1.0    27.731    5.775      26.301           0.0            68.750               0.000              1.0    143.700
+ulysses22                scalar-PPO    10            1.0    28.007    7.508      29.631           0.0            48.906               0.000              1.0    139.245
+ulysses22                      GRAL    10            1.0    28.143    4.171      27.713           0.0            80.250               0.000              1.0    146.682
+ulysses22           ALM-dual-ascent    10            1.0    34.750    6.442      36.675           0.0            80.062               0.000              2.1    135.144
+ulysses22              fixed(lam=1)    10            1.0    42.718    6.770      41.473           0.0           100.000               0.000              1.0    126.352
+ulysses22 fixed-grid-tuned(lam=0.5)    10            0.0       NaN      NaN         NaN           0.0             0.000               0.000              NaN    121.294
+     gr24     scalar-PPO-noresidual    10            1.0    21.572    4.040      22.091           0.0            59.469               0.000              1.0    202.237
+     gr24                scalar-PPO    10            1.0    22.138    2.646      21.973           0.0            56.563               0.000              1.0    195.618
+     gr24           scalar-adaptive    10            1.0    24.481    3.244      25.039           0.0            73.812               0.000              1.0    227.608
+     gr24                      GRAL    10            1.0    25.786    3.625      25.943           0.0            95.625               0.000              1.0    207.186
+     gr24       per-constraint-rule    10            1.0    28.656    5.619      28.105           0.0            85.531               0.000              1.0    202.310
+     gr24 fixed-grid-tuned(lam=0.5)    10            1.0    29.686    3.534      29.796           0.0            82.156               0.000              1.0    245.680
+     gr24           ALM-dual-ascent    10            1.0    36.203    4.801      35.810           0.0            96.000               0.000              1.0    178.827
+     gr24           GRAL-noresidual    10            1.0    38.624    4.882      39.976           0.0            98.531               0.000              1.0    229.110
+     gr24              fixed(lam=1)    10            1.0    58.090    4.672      58.373           0.0           100.000               0.000              1.0    209.895
+    fri26                      GRAL    10            1.0    32.177    3.055      32.497           0.0            90.812               0.000              1.0    229.480
+    fri26     scalar-PPO-noresidual    10            1.0    33.725    2.730      34.098           0.0            58.344               0.000              1.0    252.372
+    fri26                scalar-PPO    10            1.0    34.055    6.231      34.152           0.0            51.500               0.000              1.0    248.409
+    fri26       per-constraint-rule    10            1.0    35.326    4.961      34.312           0.0            79.438               0.000              1.0    225.544
+    fri26           scalar-adaptive    10            1.0    35.358    4.248      35.966           0.0            68.313               0.000              1.0    258.610
+    fri26 fixed-grid-tuned(lam=0.5)    10            1.0    35.923    3.798      34.952           0.0            66.031               0.000              1.0    240.462
+    fri26           ALM-dual-ascent    10            1.0    39.701    6.324      39.381           0.0            94.375               0.000              1.0    173.726
+    fri26           GRAL-noresidual    10            1.0    40.416    3.841      40.555           0.0            94.125               0.000              1.0    257.629
+    fri26              fixed(lam=1)    10            1.0    66.884    3.466      67.503           0.0           100.000               0.000              1.0    262.477
+   bayg29       per-constraint-rule    10            1.0    29.466    5.091      30.093           0.0            74.531               0.000              1.0    282.209
+   bayg29                      GRAL    10            1.0    29.702    5.435      30.621           0.0            91.844               0.000              1.0    257.339
+   bayg29                scalar-PPO    10            1.0    30.168    3.232      28.758           0.0            50.219               0.000              1.0    286.851
+   bayg29     scalar-PPO-noresidual    10            1.0    31.602    3.651      31.553           0.0            52.344               0.000              1.0    253.978
+   bayg29           scalar-adaptive    10            1.0    31.609    2.580      31.988           0.0            67.312               0.000              1.0    332.411
+   bayg29 fixed-grid-tuned(lam=0.5)    10            1.0    35.155    3.983      35.404           0.0            56.375               0.000              1.0    295.701
+   bayg29           ALM-dual-ascent    10            1.0    41.484    4.103      41.677           0.0            91.469               0.000              1.0    266.171
+   bayg29           GRAL-noresidual    10            1.0    41.739    4.258      43.634           0.0            91.438               0.000              1.0    273.830
+   bayg29              fixed(lam=1)    10            1.0    62.981    8.683      62.764           0.0           100.000               0.000              1.0    342.396
+   bays29                scalar-PPO    10            1.0    28.772    6.329      30.644           0.0            47.000               0.000              1.0    237.232
+   bays29                      GRAL    10            1.0    32.936    4.215      33.738           0.0            89.031               0.000              1.0    162.741
+   bays29           scalar-adaptive    10            1.0    33.673    3.272      34.233           0.0            67.000               0.000              1.0    276.172
+   bays29     scalar-PPO-noresidual    10            1.0    34.347    1.871      34.257           0.0            49.562               0.000              1.0    179.778
+   bays29       per-constraint-rule    10            1.0    34.708    5.574      35.767           0.0            73.188               0.000              1.0    246.860
+   bays29 fixed-grid-tuned(lam=0.5)    10            1.0    38.257    1.973      38.119           0.0            54.781               0.000              1.0    164.081
+   bays29           GRAL-noresidual    10            1.0    40.035    5.917      41.337           0.0            87.594               0.000              1.0    194.800
+   bays29           ALM-dual-ascent    10            1.0    41.891    4.417      42.748           0.0            90.750               0.000              1.0    206.131
+   bays29              fixed(lam=1)    10            1.0    69.361    4.483      69.035           0.0           100.000               0.000              1.0    199.572
+
+Paired comparison on gap_pct (win = learned model better):
+ metric                 model                        vs group  pairs  win  tie  loss  mean_diff   wilcoxon_p
+gap_pct                  GRAL              fixed(lam=1)   ALL     90   89    0     1   -24.2056 2.280838e-16
+gap_pct                  GRAL fixed-grid-tuned(lam=0.5)   ALL     90   71    1    18   -20.7567 7.053772e-11
+gap_pct                  GRAL           scalar-adaptive   ALL     90   52    1    37    -1.6703 7.188098e-03
+gap_pct                  GRAL       per-constraint-rule   ALL     90   52    1    37    -0.9661 1.043217e-01
+gap_pct                  GRAL           ALM-dual-ascent   ALL     90   81    1     8    -7.1638 3.129970e-13
+gap_pct                  GRAL                scalar-PPO   ALL     90   48    0    42    -0.4481 4.303202e-01
+gap_pct                  GRAL           GRAL-noresidual   ALL     90   80    0    10    -7.1591 3.520467e-13
+gap_pct                  GRAL     scalar-PPO-noresidual   ALL     90   55    1    34    -0.9328 2.171996e-02
+gap_pct            scalar-PPO              fixed(lam=1)   ALL     90   89    0     1   -23.7575 2.062630e-16
+gap_pct            scalar-PPO fixed-grid-tuned(lam=0.5)   ALL     90   68    0    22   -20.3086 1.748737e-08
+gap_pct            scalar-PPO           scalar-adaptive   ALL     90   46    0    44    -1.2222 6.683350e-02
+gap_pct            scalar-PPO       per-constraint-rule   ALL     90   45    0    45    -0.5180 8.689665e-01
+gap_pct            scalar-PPO           ALM-dual-ascent   ALL     90   72    1    17    -6.7157 2.632017e-10
+gap_pct            scalar-PPO                      GRAL   ALL     90   42    0    48     0.4481 4.303202e-01
+gap_pct            scalar-PPO           GRAL-noresidual   ALL     90   72    0    18    -6.7109 2.495679e-10
+gap_pct            scalar-PPO     scalar-PPO-noresidual   ALL     90   47    1    42    -0.4847 5.598850e-01
+gap_pct       GRAL-noresidual              fixed(lam=1)   ALL     90   86    0     4   -17.0466 6.607810e-16
+gap_pct       GRAL-noresidual fixed-grid-tuned(lam=0.5)   ALL     90   33    0    57   -13.5977 3.412977e-01
+gap_pct       GRAL-noresidual           scalar-adaptive   ALL     90   16    1    73     5.4887 1.280240e-10
+gap_pct       GRAL-noresidual       per-constraint-rule   ALL     90   13    0    77     6.1929 2.166126e-12
+gap_pct       GRAL-noresidual           ALM-dual-ascent   ALL     90   42    0    48    -0.0048 7.674271e-01
+gap_pct       GRAL-noresidual                      GRAL   ALL     90   10    0    80     7.1591 3.520467e-13
+gap_pct       GRAL-noresidual                scalar-PPO   ALL     90   18    0    72     6.7109 2.495679e-10
+gap_pct       GRAL-noresidual     scalar-PPO-noresidual   ALL     90   13    0    77     6.2262 2.501271e-12
+gap_pct scalar-PPO-noresidual              fixed(lam=1)   ALL     90   89    0     1   -23.2728 3.081337e-16
+gap_pct scalar-PPO-noresidual fixed-grid-tuned(lam=0.5)   ALL     90   68    0    22   -19.8239 7.716207e-08
+gap_pct scalar-PPO-noresidual           scalar-adaptive   ALL     90   53    1    36    -0.7375 1.883888e-01
+gap_pct scalar-PPO-noresidual       per-constraint-rule   ALL     90   43    0    47    -0.0333 7.444855e-01
+gap_pct scalar-PPO-noresidual           ALM-dual-ascent   ALL     90   69    0    21    -6.2310 2.595038e-10
+gap_pct scalar-PPO-noresidual                      GRAL   ALL     90   34    1    55     0.9328 2.171996e-02
+gap_pct scalar-PPO-noresidual                scalar-PPO   ALL     90   42    1    47     0.4847 5.598850e-01
+gap_pct scalar-PPO-noresidual           GRAL-noresidual   ALL     90   77    0    13    -6.2262 2.501271e-12
+
+GRAL per group (gap_pct):
+ metric model                        vs     group  pairs  win  tie  loss  mean_diff  wilcoxon_p
+gap_pct  GRAL              fixed(lam=1)   burma14     10   10    0     0   -11.0503    0.001953
+gap_pct  GRAL              fixed(lam=1) ulysses16     10   10    0     0   -12.0819    0.001953
+gap_pct  GRAL              fixed(lam=1)      gr17     10    9    0     1   -11.4341    0.005859
+gap_pct  GRAL              fixed(lam=1)      gr21     10   10    0     0   -31.9948    0.001953
+gap_pct  GRAL              fixed(lam=1) ulysses22     10   10    0     0   -14.5744    0.001953
+gap_pct  GRAL              fixed(lam=1)      gr24     10   10    0     0   -32.3035    0.001953
+gap_pct  GRAL              fixed(lam=1)     fri26     10   10    0     0   -34.7065    0.001953
+gap_pct  GRAL              fixed(lam=1)    bayg29     10   10    0     0   -33.2795    0.001953
+gap_pct  GRAL              fixed(lam=1)    bays29     10   10    0     0   -36.4257    0.001953
+gap_pct  GRAL fixed-grid-tuned(lam=0.5)   burma14     10    6    0     4    -1.4836    0.492188
+gap_pct  GRAL fixed-grid-tuned(lam=0.5) ulysses16     10   10    0     0   -91.2903    0.001953
+gap_pct  GRAL fixed-grid-tuned(lam=0.5)      gr17     10    5    0     5    -0.3981    0.845703
+gap_pct  GRAL fixed-grid-tuned(lam=0.5)      gr21     10    8    0     2    -3.3617    0.130859
+gap_pct  GRAL fixed-grid-tuned(lam=0.5) ulysses22     10   10    0     0   -71.8566    0.001953
+gap_pct  GRAL fixed-grid-tuned(lam=0.5)      gr24     10    8    0     2    -3.8994    0.027344
+gap_pct  GRAL fixed-grid-tuned(lam=0.5)     fri26     10    7    1     2    -3.7460    0.027344
+gap_pct  GRAL fixed-grid-tuned(lam=0.5)    bayg29     10    8    0     2    -5.4534    0.027344
+gap_pct  GRAL fixed-grid-tuned(lam=0.5)    bays29     10    9    0     1    -5.3218    0.003906
+gap_pct  GRAL           scalar-adaptive   burma14     10    6    0     4    -0.5236    0.625000
+gap_pct  GRAL           scalar-adaptive ulysses16     10    6    0     4    -1.6154    0.335938
+gap_pct  GRAL           scalar-adaptive      gr17     10    7    0     3    -1.6787    0.265625
+gap_pct  GRAL           scalar-adaptive      gr21     10    9    0     1    -7.1075    0.003906
+gap_pct  GRAL           scalar-adaptive ulysses22     10    4    0     6     0.4121    0.695312
+gap_pct  GRAL           scalar-adaptive      gr24     10    3    0     7     1.3050    0.417969
+gap_pct  GRAL           scalar-adaptive     fri26     10    6    1     3    -3.1804    0.128906
+gap_pct  GRAL           scalar-adaptive    bayg29     10    6    0     4    -1.9068    0.322266
+gap_pct  GRAL           scalar-adaptive    bays29     10    5    0     5    -0.7376    0.845703
+gap_pct  GRAL       per-constraint-rule   burma14     10    6    0     4    -0.8276    0.333984
+gap_pct  GRAL       per-constraint-rule ulysses16     10    5    0     5     0.3601    0.769531
+gap_pct  GRAL       per-constraint-rule      gr17     10    6    0     4    -1.0072    0.431641
+gap_pct  GRAL       per-constraint-rule      gr21     10    6    0     4    -1.5257    0.695312
+gap_pct  GRAL       per-constraint-rule ulysses22     10    5    0     5     1.8594    0.625000
+gap_pct  GRAL       per-constraint-rule      gr24     10    5    0     5    -2.8695    0.232422
+gap_pct  GRAL       per-constraint-rule     fri26     10    7    1     2    -3.1483    0.074219
+gap_pct  GRAL       per-constraint-rule    bayg29     10    6    0     4     0.2360    0.845703
+gap_pct  GRAL       per-constraint-rule    bays29     10    6    0     4    -1.7723    0.322266
+gap_pct  GRAL           ALM-dual-ascent   burma14     10    9    0     1    -3.3885    0.009766
+gap_pct  GRAL           ALM-dual-ascent ulysses16     10   10    0     0    -7.5477    0.001953
+gap_pct  GRAL           ALM-dual-ascent      gr17     10    9    0     1    -3.4916    0.064453
+gap_pct  GRAL           ALM-dual-ascent      gr21     10    8    0     2    -4.7617    0.037109
+gap_pct  GRAL           ALM-dual-ascent ulysses22     10    8    0     2    -6.6063    0.037109
+gap_pct  GRAL           ALM-dual-ascent      gr24     10   10    0     0   -10.4167    0.001953
+gap_pct  GRAL           ALM-dual-ascent     fri26     10    8    1     1    -7.5240    0.011719
+gap_pct  GRAL           ALM-dual-ascent    bayg29     10   10    0     0   -11.7826    0.001953
+gap_pct  GRAL           ALM-dual-ascent    bays29     10    9    0     1    -8.9554    0.003906
+gap_pct  GRAL                scalar-PPO   burma14     10    7    0     3    -1.1255    0.375000
+gap_pct  GRAL                scalar-PPO ulysses16     10    7    0     3    -3.0311    0.027344
+gap_pct  GRAL                scalar-PPO      gr17     10    8    0     2    -3.0312    0.027344
+gap_pct  GRAL                scalar-PPO      gr21     10    5    0     5    -2.4492    0.431641
+gap_pct  GRAL                scalar-PPO ulysses22     10    4    0     6     0.1369    0.939453
+gap_pct  GRAL                scalar-PPO      gr24     10    2    0     8     3.6478    0.048828
+gap_pct  GRAL                scalar-PPO     fri26     10    6    0     4    -1.8783    0.695312
+gap_pct  GRAL                scalar-PPO    bayg29     10    6    0     4    -0.4658    0.921875
+gap_pct  GRAL                scalar-PPO    bays29     10    3    0     7     4.1634    0.193359
+gap_pct  GRAL           GRAL-noresidual   burma14     10    9    0     1    -4.8872    0.003906
+gap_pct  GRAL           GRAL-noresidual ulysses16     10   10    0     0    -6.9894    0.001953
+gap_pct  GRAL           GRAL-noresidual      gr17     10   10    0     0    -5.1367    0.001953
+gap_pct  GRAL           GRAL-noresidual      gr21     10    9    0     1    -8.0791    0.003906
+gap_pct  GRAL           GRAL-noresidual ulysses22     10    4    0     6     0.8741    0.845703
+gap_pct  GRAL           GRAL-noresidual      gr24     10   10    0     0   -12.8381    0.001953
+gap_pct  GRAL           GRAL-noresidual     fri26     10   10    0     0    -8.2391    0.001953
+gap_pct  GRAL           GRAL-noresidual    bayg29     10    9    0     1   -12.0373    0.003906
+gap_pct  GRAL           GRAL-noresidual    bays29     10    9    0     1    -7.0990    0.025391
+gap_pct  GRAL     scalar-PPO-noresidual   burma14     10    7    0     3    -1.6702    0.105469
+gap_pct  GRAL     scalar-PPO-noresidual ulysses16     10    8    0     2    -2.1505    0.013672
+gap_pct  GRAL     scalar-PPO-noresidual      gr17     10    8    0     2    -2.2014    0.013672
+gap_pct  GRAL     scalar-PPO-noresidual      gr21     10    8    0     2    -4.0894    0.064453
+gap_pct  GRAL     scalar-PPO-noresidual ulysses22     10    4    0     6     2.3613    0.240234
+gap_pct  GRAL     scalar-PPO-noresidual      gr24     10    3    0     7     4.2138    0.064453
+gap_pct  GRAL     scalar-PPO-noresidual     fri26     10    5    0     5    -1.5475    0.431641
+gap_pct  GRAL     scalar-PPO-noresidual    bayg29     10    5    1     4    -1.9006    0.496094
+gap_pct  GRAL     scalar-PPO-noresidual    bays29     10    7    0     3    -1.4109    0.322266
+
+ALL DONE in 149.4 min. Send results/tsplib_log.txt to Claude.
